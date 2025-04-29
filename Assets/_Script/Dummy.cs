@@ -13,7 +13,7 @@ public class Dummy : MonoBehaviour
     [SerializeField] private float fireRate = 1f; // 발사 주기 (초)
     private Transform player; // 추적 대상 (플레이어)
     private bool isChasing; // 추적 중인지 여부
-    private float currentHealth; // 현재 체력
+  
     private float detectionInterval = 0.5f; // 감지 주기 (초)
     private float nextDetectionTime; // 다음 감지 시간
     private float nextFireTime; // 다음 발사 시간
@@ -21,7 +21,6 @@ public class Dummy : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
         nextDetectionTime = Time.time; 
         nextFireTime = Time.time; 
     }
@@ -85,18 +84,6 @@ public class Dummy : MonoBehaviour
             }
 
             nextFireTime = Time.time + fireRate;
-        }
-    }
-
-
-    public void TakeDamage(float damage, Vector3 hitPoint)
-    {
-        currentHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage. Health: {currentHealth}");
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject); // 체력 0 이하 시 파괴
         }
     }
 
